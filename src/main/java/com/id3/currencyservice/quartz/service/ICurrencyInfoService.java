@@ -8,5 +8,5 @@ public interface ICurrencyInfoService<T> {
 
     public List<T> getCurrencyInfo();
     public File writeCsvFromCurrencyInfo(List<T> info);
-    public void sendCsvToFtpServer(File file);
+    public void sendCsvToFtpServer(File file) throws IOException;
 }
