@@ -70,6 +70,11 @@
             <version>5.8</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>
+
 
     </dependencies>
 

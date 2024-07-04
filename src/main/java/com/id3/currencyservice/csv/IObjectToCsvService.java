@@ -1,7 +1,8 @@
 package com.id3.currencyservice.csv;
 
+import java.io.File;
 import java.util.List;
 
 public interface IObjectToCsvService<T> {
-    public void writeToCsv(List<T> tList);
+    public File writeToCsv(List<T> tList);
 }

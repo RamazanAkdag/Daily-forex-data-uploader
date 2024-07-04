@@ -30,7 +30,6 @@ public class TcmbCurrencyClientManager implements ITcmbCurrencyClientService {
 
     private final HttpClient client;
     private final Unmarshaller dovizListesiUnmarshaller;
-    private final IObjectToCsvService<Doviz> objectToCsvService;
 
     @Value("${tcmb.url}")
     private String url;
@@ -48,8 +47,6 @@ public class TcmbCurrencyClientManager implements ITcmbCurrencyClientService {
             StringReader reader = new StringReader(response.body());
 
             liste = (DovizListesi) dovizListesiUnmarshaller.unmarshal(reader);
-
-            objectToCsvService.writeToCsv(liste.getDovizler());
 
         }catch (Exception e){
             e.printStackTrace();

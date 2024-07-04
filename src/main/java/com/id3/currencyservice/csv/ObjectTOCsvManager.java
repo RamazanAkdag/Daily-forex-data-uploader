@@ -1,5 +1,6 @@
 package com.id3.currencyservice.csv;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.lang.reflect.Field;
 
@@ -19,12 +20,16 @@ public class ObjectTOCsvManager<T> implements IObjectToCsvService<T>{
         this.type = type;
     }
 
-    public void writeToCsv(List<T> tList) {
+    public File writeToCsv(List<T> tList) {
+        File file = null;
         try {
             LocalDate today = LocalDate.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             String formattedDate = today.format(formatter);
-            PrintWriter writer = new PrintWriter( "currency_"+formattedDate +".csv");
+            String filename = "currency_"+formattedDate +".csv";
+            file = new File(filename);
+
+            PrintWriter writer = new PrintWriter(file);
 
             T instance = type.getDeclaredConstructor().newInstance();
             String[] fieldNames = Arrays.stream(instance.getClass().getDeclaredFields())
@@ -41,7 +46,7 @@ public class ObjectTOCsvManager<T> implements IObjectToCsvService<T>{
         }catch (Exception e){
             e.printStackTrace();
         }
-
+        return file;
     }
 
 }
