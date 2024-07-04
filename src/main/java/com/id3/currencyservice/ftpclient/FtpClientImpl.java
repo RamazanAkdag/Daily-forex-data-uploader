@@ -17,6 +17,7 @@ public class FtpClientImpl extends FtpClient{
             } else {
                 System.out.println("Failed to upload the file.");
             }
+
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
