@@ -1,5 +1,6 @@
 package com.id3.currencyservice.model;
 
+import com.id3.currencyservice.helper.FieldAppender;
 import lombok.ToString;
 
 import javax.xml.bind.annotation.XmlAttribute;
@@ -19,7 +20,6 @@ import javax.xml.bind.annotation.XmlType;
         "dolarKuru",
         "digerKur"
 })
-@ToString
 public class Doviz {
 
     private int birim;
@@ -132,5 +132,29 @@ public class Doviz {
     public void setDigerKur(String digerKur) {
         this.digerKur = digerKur;
     }
+
+    @Override
+    public String toString(){
+        StringBuilder dataBuilder = new StringBuilder();
+        FieldAppender.appendFieldValue(dataBuilder, birim);
+        FieldAppender.appendFieldValue(dataBuilder, isim);
+        FieldAppender.appendFieldValue(dataBuilder, dovizAdi);
+        FieldAppender.appendFieldValue(dataBuilder, dovizAlis);
+        FieldAppender.appendFieldValue(dataBuilder, dovizSatis);
+        FieldAppender.appendFieldValue(dataBuilder, efektifAlis);
+        FieldAppender.appendFieldValue(dataBuilder, efektifSatis);
+        FieldAppender.appendFieldValue(dataBuilder, dolarKuru);
+        FieldAppender.appendFieldValue(dataBuilder, digerKur);
+        FieldAppender.appendFieldValue(dataBuilder, kod);
+        FieldAppender.appendFieldValue(dataBuilder, dovizKodu);
+
+        // Remove the last comma
+        if (dataBuilder.length() > 0) {
+            dataBuilder.setLength(dataBuilder.length() - 1);
+        }
+
+        return dataBuilder.toString();
+    }
+
 }
 

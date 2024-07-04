@@ -1,6 +1,7 @@
 package com.id3.currencyservice.config;
 
 
+import com.id3.currencyservice.model.Doviz;
 import com.id3.currencyservice.model.DovizListesi;
 
 import lombok.extern.slf4j.Slf4j;
@@ -16,8 +17,14 @@ import javax.xml.bind.Unmarshaller;
 public class JaxbConfig {
 
     @Bean
-    public Unmarshaller tarihDateUnmarshaller() throws JAXBException {
+    public Unmarshaller dovizListesiUnmarshaller() throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(DovizListesi.class);
+        return context.createUnmarshaller();
+    }
+
+    @Bean
+    public Unmarshaller anotherApiUnmarshaller() throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance(Doviz.class);
         return context.createUnmarshaller();
     }
 }

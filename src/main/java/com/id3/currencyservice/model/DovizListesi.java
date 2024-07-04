@@ -1,5 +1,6 @@
 package com.id3.currencyservice.model;
 
+import com.id3.currencyservice.helper.FieldAppender;
 import lombok.ToString;
 
 import javax.xml.bind.annotation.XmlAttribute;
@@ -9,7 +10,6 @@ import java.util.List;
 
 
 @XmlRootElement(name = "Tarih_Date")
-@ToString
 public class DovizListesi {
 
     private String tarih;
@@ -51,5 +51,26 @@ public class DovizListesi {
 
     public void setDovizler(List<Doviz> dovizler) {
         this.dovizler = dovizler;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder dataBuilder = new StringBuilder();
+        FieldAppender.appendFieldValue(dataBuilder, getTarih());
+        FieldAppender.appendFieldValue(dataBuilder, getTarihIngilizce());
+        FieldAppender.appendFieldValue(dataBuilder, getBultenNo());
+
+        if (dovizler != null) {
+            for (Doviz doviz : dovizler) {
+                dataBuilder.append(doviz.toString()).append(";");
+            }
+        }
+
+        // Remove the last semicolon
+        if (dataBuilder.length() > 0 && dataBuilder.charAt(dataBuilder.length() - 1) == ';') {
+            dataBuilder.setLength(dataBuilder.length() - 1);
+        }
+
+        return dataBuilder.toString();
     }
 }
