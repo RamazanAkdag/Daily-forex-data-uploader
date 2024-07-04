@@ -1,7 +1,9 @@
 package com.id3.currencyservice.controller;
 
 import com.id3.currencyservice.api_client.ICurrencyClientService;
-import com.id3.currencyservice.model.Tarih_Date;
+
+import com.id3.currencyservice.model.Doviz;
+import com.id3.currencyservice.model.DovizListesi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +20,8 @@ public class apiController {
     private final ICurrencyClientService currencyClientService;
 
     @GetMapping
-    public Tarih_Date deneme() throws URISyntaxException, IOException, InterruptedException, JAXBException {
-        return (Tarih_Date) currencyClientService.getCurrencyInfo();
+    public DovizListesi deneme() throws URISyntaxException, IOException, InterruptedException, JAXBException {
+        return (DovizListesi) currencyClientService.getCurrencyInfo();
     }
 
 

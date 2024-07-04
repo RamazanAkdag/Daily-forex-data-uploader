@@ -7,14 +7,15 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
+
 @XmlRootElement(name = "Tarih_Date")
 @ToString
-public class Tarih_Date {
+public class DovizListesi {
 
     private String tarih;
-    private String date;
+    private String tarihIngilizce;
     private String bultenNo;
-    private List<Currency> currencies;
+    private List<Doviz> dovizler;
 
     @XmlAttribute(name = "Tarih")
     public String getTarih() {
@@ -26,12 +27,12 @@ public class Tarih_Date {
     }
 
     @XmlAttribute(name = "Date")
-    public String getDate() {
-        return date;
+    public String getTarihIngilizce() {
+        return tarihIngilizce;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setTarihIngilizce(String tarihIngilizce) {
+        this.tarihIngilizce = tarihIngilizce;
     }
 
     @XmlAttribute(name = "Bulten_No")
@@ -44,11 +45,11 @@ public class Tarih_Date {
     }
 
     @XmlElement(name = "Currency")
-    public List<Currency> getCurrencies() {
-        return currencies;
+    public List<Doviz> getDovizler() {
+        return dovizler;
     }
 
-    public void setCurrencies(List<Currency> currencies) {
-        this.currencies = currencies;
+    public void setDovizler(List<Doviz> dovizler) {
+        this.dovizler = dovizler;
     }
 }

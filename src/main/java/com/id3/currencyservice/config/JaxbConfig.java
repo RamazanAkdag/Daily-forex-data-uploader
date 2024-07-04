@@ -1,6 +1,8 @@
 package com.id3.currencyservice.config;
 
-import com.id3.currencyservice.model.Tarih_Date;
+
+import com.id3.currencyservice.model.DovizListesi;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +17,7 @@ public class JaxbConfig {
 
     @Bean
     public Unmarshaller tarihDateUnmarshaller() throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance(Tarih_Date.class);
+        JAXBContext context = JAXBContext.newInstance(DovizListesi.class);
         return context.createUnmarshaller();
     }
 }
