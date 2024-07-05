@@ -39,10 +39,12 @@ public class FtpListener implements DirectoryListener, IoErrorListener, InitialC
             File localFile = new File("file.csv");
             ftpClient.downloadFile(event.getFileElement().getName(), localFile);
             List<Doviz> dovizList = csvToObectListService.convertCsvToObjectList(localFile);
-            log.debug("");
+            log.info("dovizlist : " + dovizList);
 
             var englishList = englishCurrencyIDovizMapper.map(dovizList);
+            log.info("english list : " + englishList);
             var spanishList = spanishCurrencyIDovizMapper.map(dovizList);
+            log.info("spanish list : " + spanishList);
 
             enRestCurrencyClient.sendCurrencyInfo(englishList);
             espRestCurrencyClient.sendCurrencyInfo(spanishList);
