@@ -40,4 +40,5 @@ public class CurrencyController {
         emailService.sendSimpleMessage("Successful mail Spanish", emailContent);
         return ResponseEntity.ok("Currencies received and email sent.");
     }
+
 }
