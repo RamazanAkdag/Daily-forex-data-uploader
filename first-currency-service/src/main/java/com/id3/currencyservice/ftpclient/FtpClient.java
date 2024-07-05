@@ -42,6 +42,7 @@ public abstract class FtpClient {
     }
 
     public abstract void uploadFile(File file, String remotePath);
+    public abstract void downloadFile(String remotePath, File localFile);
 
     protected FTPClient getFtpClient() {
         return ftp;

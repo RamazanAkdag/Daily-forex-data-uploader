@@ -1,6 +1,6 @@
 package com.id3.currencyservice.quartz.service;
 
-import com.id3.currencyservice.api_client.tcmb.ITcmbCurrencyClientService;
+import com.id3.currencyservice.currency_api_client.tcmb.ITcmbCurrencyClientService;
 import com.id3.currencyservice.csv.IObjectToCsvService;
 import com.id3.currencyservice.ftpclient.FtpClient;
 import com.id3.currencyservice.model.Doviz;

@@ -3,6 +3,7 @@ package com.id3.currencyservice.config;
 
 import com.id3.currencyservice.quartz.AutowiringSpringBeanJobFactory;
 import com.id3.currencyservice.quartz.CurrencyInfoJob;
+import com.id3.currencyservice.quartz.FtpListenerJob;
 import org.quartz.*;
 
 import org.quartz.spi.JobFactory;
@@ -21,7 +22,7 @@ import java.util.Map;
 public class QuartzConfig {
     @Value("${cron.expression}")
     private String cronExpression;
-    @Bean(name = "createMeetJob")
+    @Bean(name = "currencyInfoJobJob")
     public JobDetailFactoryBean jobDetail() {
         JobDetailFactoryBean jobDetailFactory = new JobDetailFactoryBean();
         jobDetailFactory.setJobClass(CurrencyInfoJob.class);
@@ -30,10 +31,28 @@ public class QuartzConfig {
         return jobDetailFactory;
     }
 
-
+    @Bean(name = "ftpListenerJobJob")
+    public JobDetailFactoryBean jobDetail2() {
+        JobDetailFactoryBean jobDetailFactory = new JobDetailFactoryBean();
+        jobDetailFactory.setJobClass(FtpListenerJob.class);
+        jobDetailFactory.setDescription("Invoke Sample Job service...");
+        jobDetailFactory.setDurability(true);
+        return jobDetailFactory;
+    }
 
     @Bean
-    public CronTriggerFactoryBean cronTrigger(@Qualifier("createMeetJob") JobDetail jobDetail) {
+    public SimpleTrigger trigger(@Qualifier("ftpListenerJobJob") JobDetail jobDetail) {
+        return TriggerBuilder.newTrigger()
+                .forJob(jobDetail)
+                .withIdentity("myTrigger", "group1")
+                .startNow()
+                .withSchedule(SimpleScheduleBuilder.simpleSchedule()
+                        .withRepeatCount(0))
+                .build();
+    }
+
+    @Bean
+    public CronTriggerFactoryBean cronTrigger(@Qualifier("currencyInfoJobJob") JobDetail jobDetail) {
         CronTriggerFactoryBean factoryBean = new CronTriggerFactoryBean();
         factoryBean.setJobDetail(jobDetail);
         factoryBean.setCronExpression(cronExpression); // Her gün saat 9:00'da
