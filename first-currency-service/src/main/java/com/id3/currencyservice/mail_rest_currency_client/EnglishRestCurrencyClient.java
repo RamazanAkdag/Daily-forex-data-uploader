@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class EnglishRestCurrencyClient implements IRestCurrencyClient<EnglishCurrency> {
-    private final String url = "http://localhost:8080/api/en";
+    private final String url = "http://localhost:8082/api/en";
     private final RestCurrencyClient<EnglishCurrency> restCurrencyClient;
 
     @Override
